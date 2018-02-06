@@ -94,27 +94,37 @@ jQuery ($) ->
 		$(".card_touch").each (index, element) ->
 			if $(this).html() != ""
 				select_card.push $(this)
+		nn = false
+		match = false
 		if window.point == 0
-			card_rnd = Math.floor(Math.random() * select_card.length)
-			select_card[card_rnd].addClass("enemy")
-			name = select_card[card_rnd].parent().children(".card_spell").val()
-			name = name.split(",")
-			spell_rnd = Math.floor(Math.random() * name.length)
-			name = name[spell_rnd]
+			while match == false
+				card_rnd = Math.floor(Math.random() * select_card.length)
+				select_card[card_rnd].addClass("enemy")
+				name = select_card[card_rnd].parent().children(".card_spell").val()
+				name = name.split(",")
+				spell_rnd = Math.floor(Math.random() * name.length)
+				name = name[spell_rnd]
+				console.log $.convert_spell(name)
+				if $.convert_spell(name) != "ん"
+					match = true
 		else
-			match = false
-			$.each select_card, (index, element) ->
-				temp_name = $(this).parent().children(".card_spell").val()
-				temp_name = temp_name.split(",")
-				$.each temp_name, (index, element) ->
-					spell = $.convert_spell(element, true)
-					if spell == window.txt_now
-						match = true
-						name = element
+			while match == false
+				$.each select_card, (index, element) ->
+					temp_name = $(this).parent().children(".card_spell").val()
+					temp_name = temp_name.split(",")
+					$.each temp_name, (index, element) ->
+						spell = $.convert_spell(element, true)
+						if spell == window.txt_now
+							if $.convert_spell(element) == "ん" && nn = false
+								return true
+							else
+								match = true
+								name = element
+								return false
+					if match
+						$(this).addClass("enemy")
 						return false
-				if match
-					$(this).addClass("enemy")
-					return false
+				nn = true
 		window.txt_now = $.convert_spell(name)
 		$.wait(1500).done ->
 			$(".card_touch.enemy").parent().children("input").val ""
@@ -124,7 +134,6 @@ jQuery ($) ->
 				window.txt_phase = "start_card"
 				$.txt_set "「"+name+"」だ！「"+window.txt_now+"」で始まるのはどれだ？"
 				window.txt_msec = 1
-				$.txt_working()
 			else
 				window.txt_phase = "card_empty"
 				$.txt_set "「"+name+"」だ！しかし「"+window.txt_now+"」で始まるものが、もう無いようだな。"
