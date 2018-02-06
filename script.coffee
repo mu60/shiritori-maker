@@ -104,7 +104,6 @@ jQuery ($) ->
 				name = name.split(",")
 				spell_rnd = Math.floor(Math.random() * name.length)
 				name = name[spell_rnd]
-				console.log $.convert_spell(name)
 				if $.convert_spell(name) != "ん"
 					match = true
 			select_card[card_rnd].addClass("enemy")
@@ -115,13 +114,14 @@ jQuery ($) ->
 					temp_name = temp_name.split(",")
 					$.each temp_name, (index, element) ->
 						spell = $.convert_spell(element, true)
-						if spell == window.txt_now
-							if $.convert_spell(element) == "ん" && nn = false
-								return true
-							else
-								match = true
-								name = element
-								return false
+						if spell != window.txt_now
+							return true
+						if $.convert_spell(element) == "ん" && nn == false
+							return true
+						else
+							match = true
+							name = element
+							return false
 					if match
 						$(this).addClass("enemy")
 						return false
@@ -138,7 +138,6 @@ jQuery ($) ->
 				window.txt_msec = 1
 				$.txt_working()
 				return false
-			console.log "ok"
 			if $.remaining_check()
 				window.txt_phase = "start_card"
 				$.txt_set "「"+name+"」だ！「"+window.txt_now+"」で始まるのはどれだ？"
