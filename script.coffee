@@ -173,7 +173,14 @@ jQuery ($) ->
 		$(".card_touch.match").parent().children("input").val ""
 		$(".card_touch.match").html ""
 		$(".card_touch.match").removeClass("match")
-		console.log $.remaining_check()
+		console.log "aaaaaa"
+		console.log window.txt_now
+		if window.txt_now == "ん"
+			window.txt_phase = "game_set"
+			$.txt_set "バカめ！「ん」で終わるものを選んだな！お前の負けだ！"
+			window.txt_msec = 1500
+			$.txt_working()
+			return false
 		if $.remaining_check()
 			window.txt_phase = "next_card"
 			$.txt_set "「"+window.txt_now+"」で始まるものだな。それならば…。"
