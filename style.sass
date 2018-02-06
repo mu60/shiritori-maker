@@ -1,0 +1,62 @@
+/*
+	Theme Name: shiritori-maker
+	Author: muro
+	Author URI: https://wiredpunch.com
+	Description: しりとりメーカー
+
+html
+	font-size: 6.25%
+
+body
+	font-size: 16em
+
+.cards
+	display: flex
+	flex-wrap: wrap
+	border-left: 5px solid  #ccc
+	border-top: 5px solid  #ccc
+	width: 155px * 6
+	margin: 0 auto
+	.card
+		width: 150px
+		height: 150px
+		border-right: 5px solid  #ccc
+		border-bottom: 5px solid  #ccc
+		margin: 0
+	.card_touch
+		display: flex
+		width: 100%
+		height: 100%
+		justify-content: center
+		align-items: center
+		position: relative
+		&:hover
+			cursor: not-allowed
+		&.your_turn
+			&:hover
+				cursor: pointer
+				opacity: 0.8
+		&.match, &.enemy
+			&:after
+				content: ''
+				position: absolute
+				width: 150px
+				height: 150px
+				top: -5
+				left: -5px
+				border: 5px solid
+		&.match
+			&:after
+				border-color: #00f
+		&.enemy
+			&:after
+				border-color: #f00
+
+.message
+	font-weight: bold
+	text-align: center
+	font-size: 32rem
+	height: 1em
+
+.point
+	text-align: center
