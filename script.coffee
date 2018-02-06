@@ -173,8 +173,6 @@ jQuery ($) ->
 		$(".card_touch.match").parent().children("input").val ""
 		$(".card_touch.match").html ""
 		$(".card_touch.match").removeClass("match")
-		console.log "aaaaaa"
-		console.log window.txt_now
 		if window.txt_now == "ん"
 			window.txt_phase = "game_set"
 			$.txt_set "バカめ！「ん」で終わるものを選んだな！お前の負けだ！"
