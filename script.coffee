@@ -97,9 +97,9 @@ jQuery ($) ->
 		nn = false
 		match = false
 		if window.point == 0
+			card_rnd = 0
 			while match == false
 				card_rnd = Math.floor(Math.random() * select_card.length)
-				select_card[card_rnd].addClass("enemy")
 				name = select_card[card_rnd].parent().children(".card_spell").val()
 				name = name.split(",")
 				spell_rnd = Math.floor(Math.random() * name.length)
@@ -107,6 +107,7 @@ jQuery ($) ->
 				console.log $.convert_spell(name)
 				if $.convert_spell(name) != "ん"
 					match = true
+			select_card[card_rnd].addClass("enemy")
 		else
 			while match == false
 				$.each select_card, (index, element) ->
