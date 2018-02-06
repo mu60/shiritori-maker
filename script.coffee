@@ -131,16 +131,24 @@ jQuery ($) ->
 			$(".card_touch.enemy").parent().children("input").val ""
 			$(".card_touch.enemy").html ""
 			$(".card_touch.enemy").removeClass("enemy")
+			clearTimeout window.timer
+			if window.txt_now == "ん"
+				window.txt_phase = "game_set"
+				$.txt_set "「"+name+"」…あっ！しまった！「ん」だ！しかたない…お前の勝ちだ。"
+				window.txt_msec = 1
+				$.txt_working()
+				return false
+			console.log "ok"
 			if $.remaining_check()
 				window.txt_phase = "start_card"
 				$.txt_set "「"+name+"」だ！「"+window.txt_now+"」で始まるのはどれだ？"
 				window.txt_msec = 1
+				$.txt_working()
 			else
 				window.txt_phase = "card_empty"
 				$.txt_set "「"+name+"」だ！しかし「"+window.txt_now+"」で始まるものが、もう無いようだな。"
 				window.txt_msec = 1500
-			clearTimeout window.timer
-			$.txt_working()
+				$.txt_working()
 
 	$.your_turn = ->
 		window.txt_phase = "your_turn"
