@@ -14,7 +14,7 @@ function include_smarty() {
 }
 
 add_action("wp_enqueue_scripts", function() {
-	wp_enqueue_style("normalize", "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css");
+	wp_enqueue_style("normalize", "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css");
 	wp_enqueue_style("style", get_template_directory_uri() . "/style.css");
 	wp_enqueue_script("jquery");
 	wp_enqueue_script("script", get_template_directory_uri() . "/assets/script.js");
