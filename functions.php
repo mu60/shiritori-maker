@@ -6,7 +6,9 @@ add_theme_support("post-thumbnails");
 add_theme_support("title-tag");
 
 function include_smarty() {
-	require_once("smarty/Smarty.class.php");
+	if(!class_exists("Smarty")) {
+		require_once("smarty/Smarty.class.php");
+	}
 	$smarty = new \Smarty();
 	$smarty->template_dir = get_template_directory() . "/templates";
 	$smarty->compile_dir = get_template_directory() . "/templates_c";
