@@ -7,7 +7,7 @@ add_theme_support("title-tag");
 
 function include_smarty() {
 	if(!class_exists("Smarty")) {
-		require_once("smarty/Smarty.class.php");
+		require_once(get_template_directory() . "/smarty/Smarty.class.php");
 	}
 	$smarty = new \Smarty();
 	$smarty->template_dir = get_template_directory() . "/templates";
